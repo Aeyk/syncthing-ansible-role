@@ -9,9 +9,9 @@ use warnings;
 
 use JSON::PP;
 
-`doas -u {{ syncthing_pre.user_group }} syncthing generate --config {{ syncthing_pre.config_dir }} 2>&1` unless -e "{{ syncthing_pre.config_dir }}/config.xml";
+`sudo -u {{ syncthing_pre.user_group }} syncthing generate --config {{ syncthing_pre.config_dir }} 2>&1` unless -e "{{ syncthing_pre.config_dir }}/config.xml";
 
-my $id = `doas -u {{ syncthing_pre.user_group }} syncthing -device-id --config {{ syncthing_pre.config_dir }} --data {{ syncthing_pre.data_dir }} 2>&1`;
+my $id = `sudo -u {{ syncthing_pre.user_group }} syncthing -device-id --config {{ syncthing_pre.config_dir }} --data {{ syncthing_pre.data_dir }} 2>&1`;
 chomp $id;
 
 my %output = (
