@@ -31,6 +31,11 @@ class ActionModule(ActionBase):
                 config['config_dir'] = "/var/lib/syncthing/.config/syncthing/"
                 config['data_dir'] = "/var/lib/syncthing"
                 config['packages'] = ["net-p2p/syncthing"]
+            elif task_vars['ansible_distribution'] == 'Ubuntu':
+                config['config_dir'] = "/home/syncthing/.config/syncthing/"
+                config['data_dir'] = "/home/syncthing/.local/share/syncthing/"
+                config['packages'] = ["syncthing"]
+                
             else:
                 error_msgs.append(f"syncthing role does not support {task_vars['ansible_distribution']} hosts yet")
 

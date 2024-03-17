@@ -30,6 +30,10 @@
 
 - action: syncthing_init
 
+- name: create service account
+  ansible.builtin.user:
+    name: "{{ syncthing_pre.user_group }}"
+  
 - name: enforces config file
   template:
     src: config.xml
